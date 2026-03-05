@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login</h2>
+    <form>
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+  </div>
+
+  <script>
+    async function login(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('Login successful!');
+          localStorage.setItem('userId', data.userId);
+          window.location.href = 'contractor home.html';
+        } else {
+          alert('Login failed: ' + data.error);
+        }
+      } catch (err) {
+        alert("Login request failed: " + err.message);
+      }
+    }
+
+    document.querySelector('form').addEventListener('submit', login);
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contractor Dashboard</title>
+  <link rel="stylesheet" href="contractor-home.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Dashboard</h2>
+      <button id="btnHome">🏠 Home</button>
+      <button id="btnProfile">👤 Profile</button>
+      <button id="btnLogout">🚪 Logout</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Home Section -->
+      <section id="home-section" class="section active">
+        <div class="top-bar">
+          <h1>Projects</h1>
+          <div class="add-actions">
+            <button class="action-btn" data-type="contract">Add Contract Project</button>
+            <button class="action-btn" data-type="daily">Add Daily Project</button>
+          </div>
+        </div>
+        <div class="project-grid">
+          <div id="contractList" class="project-column">
+            <h2>Contract Projects</h2>
+            <div class="cards" id="contractCards"></div>
+          </div>
+          <div id="dailyList" class="project-column">
+            <h2>Daily Projects</h2>
+            <div class="cards" id="dailyCards"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile Section -->
+      <section id="profile-section" class="section">
+        <h2>Your Profile</h2><br><br>
+        <div id="profileDetails" class="profile-box">Loading…</div>
+        <button id="editProfileBtn" class="edit-profile-btn">Edit</button>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add/Edit Project Modal -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <h3 id="modalTitle">Add Project</h3>
+      <input type="text" id="projectName" placeholder="Project Name" />
+      <input type="date" id="projectDeadline" />
+      <input type="number" id="projectAmount" placeholder="Total Amount" />
+      <button id="saveProjectBtn">Save</button>
+      <button id="cancelProjectBtn">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+<div id="profileModal" class="modal">
+  <div class="modal-content">
+    <h3>Edit Profile</h3>
+    <input type="text" id="editName" placeholder="Name" />
+    <input type="email" id="editEmail" placeholder="Email" />
+    <input type="tel" id="editPhone" placeholder="Phone" />
+    <textarea id="editAddress" placeholder="Address"></textarea>
+    <button id="saveProfileBtn">Save</button>
+    <button id="cancelProfileBtn">Cancel</button>
+  </div>
+</div>
+
+  <script src="contractor-home.js"></script>
+</body>
+</html>

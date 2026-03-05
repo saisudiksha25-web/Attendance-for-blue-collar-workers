@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <div class="signup-box">
+    <h2>Sign Up</h2>
+    <form onsubmit="handleSignup(event)">
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="tel" id="phone" placeholder="Phone" required>
+      <textarea id="address" placeholder="Address" required></textarea>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p style="text-align:center;">Already have an account? <a href="login.html">Login</a></p>
+  </div>
+
+  <script>
+    async function handleSignup(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      // Email validation - must end with @gmail.com
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+      if (!emailPattern.test(email)) {
+        alert("Email must end with @gmail.com");
+        return;
+      }
+
+      // Phone validation - must be exactly 10 digits
+      const phonePattern = /^\d{10}$/;
+      if (!phonePattern.test(phone)) {
+        alert("Phone number must be exactly 10 digits");
+        return;
+      }
+
+      // Password validation:
+      // - At least one special character
+      // - At least one number
+      // - Cannot start with a number
+      const passwordPattern = /^(?!\d)(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
+      if (!passwordPattern.test(password)) {
+        alert("Password must have at least one number, one special character, and cannot start with a number");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      try {
+        const response = await fetch('/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, address, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert("Signup successful!");
+          window.location.href = "login.html";
+        } else {
+          alert("Signup failed: " + (data.error || "Unknown error"));
+        }
+      } catch (error) {
+        console.error("Signup request failed", error);
+        alert("Signup request failed: " + error.message);
+      }
+    }
+  </script>
+</body>
+</html>

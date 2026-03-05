@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: #f4f6f8;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background-color: #003366;
+  padding: 15px 30px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo-area {
+  display: flex;
+  align-items: center;
+}
+
+header .site-logo {
+  height: 50px;
+  width: 80px;
+  border-radius: 40px;
+  margin-right: 15px;
+}
+
+header .logo-text {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+header nav a {
+  color: white;
+  margin-left: 30px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+header nav a:hover {
+  color: #ffcc00;
+}
+
+/* Navigation Bar */
+nav {
+  background-color: #003366;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffcc00;
+}
+
+nav a.active {
+  text-decoration: underline;
+  color: #ffcc00;
+}
+
+/* Main Content Layout */
+.main-container {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+/* Left Section */
+.left-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('home-background.png') no-repeat center center;
+  background-size: cover;
+  color: white;
+  padding: 40px;
+}
+
+.hero-box {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px 40px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.hero-box h1 {
+  font-size: 34px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.hero-box .quote {
+  font-style: italic;
+  font-size: 18px;
+  color: #ddd;
+}
+
+/* Right Section */
+.right-section {
+  width: 500px;
+  background: #eaf2f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button Style */
+.btn-icon {
+  height: 180px;
+  width: 180px;
+  border-radius: 100px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.btn-icon:hover {
+  transform: scale(1.05);
+}
+
+/* Button Label */
+.contractor-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #003366;
+  text-align: center;
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="project demo.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+        <ul style="display: flex; flex-direction: column; height: 100%; padding: 0; margin: 0; list-style: none;">
+          <li ><a href="contractor home.html" class="back-btn">⬅back</a></li>
+          <li onclick="showSection('project')">Project</li>
+          <li onclick="showSection('attendance')">Post Attendance</li>
+          <li onclick="showSection('filter')">Filter Attendance</li>
+          <li onclick="loadAttendanceSheet()">Attendance Sheet</li>
+        </ul>
+      </aside>
+
+
+    <main class="main">
+      <section id="project" class="section active">
+        <div class="top-nav">
+          <span id="deadlineDisplay" style="margin-left:1000px;">Deadline: --</span>
+        </div>
+
+        <div class="project-boxes" id="projectMainContent">
+          <!-- Contract Workers Box -->
+          <div class="box">
+            <h3>Contract Workers</h3>
+            <ul id="contractList"></ul>
+            <button onclick="openAddWorkerPopup('contract')">Add Contract Worker</button>
+          </div>
+
+          <!-- Daily Workers Box -->
+          <div class="box">
+            <h3>Daily Workers</h3>
+            <ul id="dailyList"></ul>
+            <button onclick="openAddWorkerPopup('daily')">Add Daily Worker</button>
+          </div>
+
+          <div class="payment-wrapper">
+            <div class="box payment-box">
+              <h3>Payments</h3>
+              <p><strong>Total Received:</strong> <span id="receivedAmount">--</span></p>
+              <p><strong>Pending Amount:</strong> <span id="pendingAmount">--</span></p>
+              <button onclick="openPaymentModal()">Update Payment</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="workerAttendanceData" style="display: none;"></div>
+      </section>
+
+      <!-- Attendance Section -->
+      <section id="attendance" class="section">
+        <div class="top-nav">
+          <h2>Post Attendance</h2>
+          <label for="attendanceDate">Date:</label>
+          <input type="date" id="attendanceDate">
+        </div>
+        <div class="project-boxes">
+          <div class="box">
+            <h3>Contract Workers</h3>
+            <ul id="contractAttendanceList"></ul>
+          </div>
+          <div class="box">
+            <h3>Daily Workers</h3>
+            <ul id="dailyAttendanceList"></ul>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="submitAttendance()">Submit Attendance</button>
+      </section>
+
+      <!-- Filter Attendance Section -->
+      <section id="filter" class="section">
+        <div class="top-nav">
+          <h2>Filter Attendance</h2>
+        </div>
+        <div class="box" style="max-width:600px;">
+          <div class="filter-date-row">
+            <label>Start Date:</label>
+            <input type="date" id="startDate">
+            <label>End Date:</label>
+            <input type="date" id="endDate">
+          </div>
+          <br>
+          <label>Worker Type:</label>
+          <select id="filterType">
+            <option value="both">Both</option>
+            <option value="contract">Contract</option>
+            <option value="daily">Daily</option>
+          </select>
+          <button onclick="filterAttendance()">Filter</button>
+          <div id="filterResults"></div>
+        </div>
+      </section>
+
+
+      <!-- Attendance Sheet Section -->
+      <section id="attendanceSheet" class="section">
+        <div class="top-nav">
+          <h2>Attendance Sheet</h2>
+        </div>
+        <div class="box" style="max-width:900px;">
+          <div id="attendanceSheetContainer">Loading...</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add Worker Modal -->
+  <div class="modal" id="workerModal">
+    <div class="modal-content">
+      <h3>Add Worker</h3>
+      <input type="text" id="workerNameInput" placeholder="Enter worker name">
+      <div class="modal-buttons">
+        <button onclick="saveWorker()">Add</button>
+        <button onclick="closeModal('workerModal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Payment Modal -->
+  <div class="modal" id="paymentModal">
+    <div class="modal-content">
+      <h3>Update Payment</h3>
+      <label>Total Amount:</label>
+      <input type="number" id="totalAmountInput" disabled>
+      <label>Amount Received:</label>
+      <input type="number" id="receivedAmountInput">
+      <label>Pending Amount:</label>
+      <input type="number" id="pendingAmountInput" disabled>
+      <div class="modal-buttons">
+        <button onclick="savePayment()">Save</button>
+        <button onclick="closeModal('paymentModal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="project demo.js"></script>
+</body>
+</html>
